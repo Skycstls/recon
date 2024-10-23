@@ -1,0 +1,13 @@
+HTTP/2 301 
+content-length: 0
+location: https://www.nike.com/
+server: CloudFront
+date: Wed, 23 Oct 2024 09:33:40 GMT
+strict-transport-security: max-age=63072000
+cache-control: max-age=300, s-maxage=604800
+x-cache: Hit from cloudfront
+via: 1.1 2399fabba5604964966b51873c00a582.cloudfront.net (CloudFront)
+x-amz-cf-pop: MAD53-P1
+x-amz-cf-id: epJLOt_z5l7UFie7Wth2QLNtKUyIkaBkDPY6FpknoHz1kCgrmI3wLQ==
+age: 24916
+
