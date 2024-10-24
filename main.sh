@@ -1,5 +1,4 @@
 #!/bin/bash
-./reset.sh
 figlet -f slant suprimoware
 if [ -z "$1" ]; then
     echo "Error: No enviaste un dominio"
