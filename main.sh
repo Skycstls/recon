@@ -29,9 +29,11 @@ dig +short AAAA $domain > $ruta_resultados/clean/AAAA
 dig +short CNAME $domain > $ruta_resultados/clean/CNAME
 dig +short SOA $domain > $ruta_resultados/clean/SOA
 
-#echo "Extrayendo rangos de IP"
-#TODO: Funciona con una IP, tenemos que hacer un bucle para recorrer todas cuando tenemos mas de una
-#whois -b $(cat $ruta_resultados/clean/IP) | grep 'inetnum' | awk '{print $2, $3, $4}' > $ruta_resultados/clean/rangos_ripe
+echo "Extrayendo rangos de IP"
+while IFS= read -r ip; do
+    whois -b "$ip" | grep 'inetnum' | awk '{print $2, $3, $4}' >> $ruta_resultados/clean/rangos_ripe
+done < $ruta_resultados/clean/IP
+
 echo "Realizando whois"
 whois $domain > $ruta_resultados/raw/whois
 echo "Realizando dig "
@@ -39,4 +41,13 @@ dig $domain > $ruta_resultados/raw/dig
 
 curl -I https://$domain > $ruta_resultados/raw/headers
 cat $ruta_resultados/raw/headers | grep -i Server | awk '{ print $2 }' > $ruta_resultados/clean/header_server
+
+# Revisar y eliminar archivos vacíos en la carpeta /clean
+for file in "$ruta_resultados/clean"/*; do
+  if [ ! -s "$file" ]; then
+    echo "Eliminando archivo vacío: $file"
+    rm "$file"
+  fi
+done
+
 
