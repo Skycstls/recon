@@ -58,7 +58,7 @@ done
 ###############################
 
 # Crear el archivo con el encabezado del dominio
-echo "# $dominio" > "/tmp/resultado.md"
+echo "# $domain" > "/tmp/resultado.md"
 echo "## Infraestructura" >> "/tmp/resultado.md"
 
 # Función para agregar contenido de archivos a una sección específica
@@ -78,18 +78,18 @@ function agregar_registros {
 }
 
 # Agregar diferentes tipos de registros
-agregar_registros "NS"
 agregar_registros "IP"
+agregar_registros "rangos_ripe"
+agregar_registros "NS"
 agregar_registros "MX"
-agregar_registros "TXT"
 agregar_registros "CNAME"
 agregar_registros "SRV"
 agregar_registros "AAAA"
+agregar_registros "header_server"
 agregar_registros "SOA"
 agregar_registros "DMARC"
 agregar_registros "DKIM"
-agregar_registros "rangos_ripe"
-agregar_registros "header_server"
+agregar_registros "TXT"
 
 # Generar el mapa mental con markmap
 markmap "/tmp/resultado.md" --no-open
